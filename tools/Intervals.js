@@ -31,7 +31,7 @@ var MAJ_INTERVALS = [0, 2, 4, 5, 7, 8, 11];
 function getVal(note)
 {
 	var r = 0,
-			alts = Zenino.Tools.Note.getAccidentals(note);
+			alts = Zenino.Notes.getAccidentals(note);
 	for(var i = 0, l = alts.length; i < l; i++) {
 		var alt = alts[i];
 		if(alt == 'b') r--;
@@ -40,12 +40,36 @@ function getVal(note)
 	return r;
 }
 
-var Interval = {
+var Intervals = {
 
 	/**
 	 * Diatonic intervals.
 	 * Needs a note and a key.
 	 **/
+
+ /**
+  * Returns the note found at the interval starting from $start_note in the given key.
+  * For example interval('C', 'D', 1) will return 'E'.
+  * Will raise a !KeyError if the $start_note is not a valid note.
+  **/
+  interval: function (key, start_note, interval)
+  {
+    if( !Zenino.Notes.isValidNote(start_note) ) {
+      throw new NoteFormatError(start_note);
+    }
+    var notes_in_key = Keys.getNotes(key),
+        index = null;
+    for(var i = 0, l = notes_in_key.length; i < l; i++) {
+      var note = notes_in_key[i];
+      if (note[0] == start_note[0]) {
+        index = i;
+        break;
+      }
+    }
+	  if(index == null)
+      throw new RangeError(start_note + " doesn't belong to the key of " + key);
+    return notes_in_key[(index + interval) % 7];
+  },
 
 	/**
 	 * One of the most useless methods ever written,
@@ -65,27 +89,27 @@ var Interval = {
 	 **/
 	second: function(note, key)
 	{
-		return Zenino.Tools.Diatonic.interval(key, note, 1);
+		return Intervals.interval(key, note, 1);
 	},
 	third: function(note, key)
 	{
-		return Zenino.Tools.Diatonic.interval(key, note, 2);
+		return Intervals.interval(key, note, 2);
 	},
 	fourth: function(note, key)
 	{
-		return Zenino.Tools.Diatonic.interval(key, note, 3);
+		return Intervals.interval(key, note, 3);
 	},
 	fifth: function(note, key)
 	{
-		return Zenino.Tools.Diatonic.interval(key, note, 4);
+		return Intervals.interval(key, note, 4);
 	},
 	sixth: function(note, key)
 	{
-		return Zenino.Tools.Diatonic.interval(key, note, 5);
+		return Intervals.interval(key, note, 5);
 	},
 	seventh: function(note, key)
 	{
-		return Zenino.Tools.Diatonic.interval(key, note, 6);
+		return Intervals.interval(key, note, 6);
 	},
 
 	/**
@@ -94,7 +118,7 @@ var Interval = {
 
 	minorUnison: function(note)
 	{
-		return Zenino.Tools.Note.diminish(note);
+		return Zenino.Notes.diminish(note);
 	},
 	majorUnison: function(note)
 	{
@@ -102,116 +126,116 @@ var Interval = {
 	},
 	augmentedUnison: function(note)
 	{
-		return Zenino.Tools.Note.augment(note);
+		return Zenino.Notes.augment(note);
 	},
 
 	minorSecond: function(note)
 	{
-		sec = Interval.second(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, sec, 1);
+		sec = Intervals.second(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, sec, 1);
 	},
 	majorSecond: function(note)
 	{
-		sec = Interval.second(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, sec, 2);
+		sec = Intervals.second(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, sec, 2);
 	},
 	augmentedSecond: function(note)
 	{
-		sec = Interval.second(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, sec, 3);
+		sec = Intervals.second(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, sec, 3);
 	},
 	
 	diminishedThird: function(note)
 	{
-		trd = Interval.third(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, trd, 2);
+		trd = Intervals.third(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, trd, 2);
 	},
 	minorThird: function(note)
 	{
-		trd = Interval.third(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, trd, 3);
+		trd = Intervals.third(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, trd, 3);
 	},
 	majorThird: function(note)
 	{
-		trd = Interval.third(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, trd, 4);
+		trd = Intervals.third(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, trd, 4);
 	},
 	augmentedThird: function(note)
 	{
-		trd = Interval.third(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, trd, 5);
+		trd = Intervals.third(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, trd, 5);
 	},
 	
 	diminishedFourth: function(note)
 	{
-		frt = Interval.fourth(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, frt, 4);
+		frt = Intervals.fourth(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, frt, 4);
 	},
 	perfectFourth: function(note)
 	{
-		frt = Interval.fourth(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, frt, 5);
+		frt = Intervals.fourth(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, frt, 5);
 	},
 	augmentedFourth: function(note)
 	{
-		frt = Interval.fourth(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, frt, 6);
+		frt = Intervals.fourth(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, frt, 6);
 	},
 	
 	diminishedFifth: function(note)
 	{
-		fif = Interval.fifth(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, fif, 6);
+		fif = Intervals.fifth(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, fif, 6);
 	},
 	perfectFifth: function(note)
 	{
-		fif = Interval.fifth(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, fif, 7);
+		fif = Intervals.fifth(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, fif, 7);
 	},
 	augmentedFifth: function(note)
 	{
-		fif = Interval.fifth(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, fif, 8);
+		fif = Intervals.fifth(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, fif, 8);
 	},
 	
 	diminishedSixth: function(note)
 	{
-		sth = Interval.sixth(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 7);
+		sth = Intervals.sixth(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 7);
 	},
 	minorSixth: function(note)
 	{
-		sth = Interval.sixth(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 8);
+		sth = Intervals.sixth(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 8);
 	},
 	majorSixth: function(note)
 	{
-		sth = Interval.sixth(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 9);
+		sth = Intervals.sixth(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 9);
 	},
 	diminishedSeventh: function(note)
 	{
-		sth = Interval.seventh(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 9);
+		sth = Intervals.seventh(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 9);
 	},
 	minorSeventh: function(note)
 	{
-		sth = Interval.seventh(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 10);
+		sth = Intervals.seventh(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 10);
 	},
 	majorSeventh: function(note)
 	{
-		sth = Interval.seventh(note[0], 'C');
-		return Interval.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 11);
+		sth = Intervals.seventh(note[0], 'C');
+		return Intervals.augmentOrDiminishUntilTheIntervalIsRight(note, sth, 11);
 	},
 	
-	minorNinth: function(note){ return Interval.minorSecond(note); },
-	majorNinth: function(note){ return Interval.majorSecond(note); },
-	augmentedNinth: function(note){ return Interval.augmentedSecond(note); },
-	perfectEleventh: function(note){ return Interval.perfectFourth(note); },
-	augmentedEleventh: function(note){ return Interval.augmentedFourth(note); },
-	minorThirteenth: function(note){ return Interval.minorSixth(note); },
-	majorThirteenth: function(note){ return Interval.majorSixth(note); },
+	minorNinth: function(note){ return Intervals.minorSecond(note); },
+	majorNinth: function(note){ return Intervals.majorSecond(note); },
+	augmentedNinth: function(note){ return Intervals.augmentedSecond(note); },
+	perfectEleventh: function(note){ return Intervals.perfectFourth(note); },
+	augmentedEleventh: function(note){ return Intervals.augmentedFourth(note); },
+	minorThirteenth: function(note){ return Intervals.minorSixth(note); },
+	majorThirteenth: function(note){ return Intervals.majorSixth(note); },
 	
 	/**
 	 * Gets the note an interval (in semitones) away from the given note.
@@ -222,11 +246,11 @@ var Interval = {
 	{
 		key = key || 'C';
 		var intervals = [],
-				key_notes = Zenino.Tools.Diatonic.getNotes(key),
+				key_notes = Zenino.Diatonics.getNotes(key),
 				l = key_notes.length;
 		// 7 = MAJ_INTERVALS.length
 		for(var i = 0; i < 7; i++) {
-			intervals.push( (Zenino.Tools.Note.noteToInt(key) + MAJ_INTERVALS[i]) % 12 );
+			intervals.push( (Zenino.Notes.noteToInt(key) + MAJ_INTERVALS[i]) % 12 );
 		}
 
 		for(var i = 0; i < l; i++) {
@@ -235,11 +259,11 @@ var Interval = {
 			if(kn[0] == note[0]) {
 				result = (intervals[key_notes.indexOf(kn)] + interval) % 12;
 				var idx = intervals.indexOf(result),
-						accidentals = Zenino.Tools.Note.getAccidentals(note).join('');
+						accidentals = Zenino.Notes.getAccidentals(note).join('');
         if( idx !== -1) {
           return key_notes[idx] + accidentals;
         } else {
-          return Zenino.Tools.Note.diminish(
+          return Zenino.Notes.diminish(
             key_notes[intervals.indexOf((result + 1) % 12)] + accidentals
           );
         }
@@ -253,7 +277,7 @@ var Interval = {
 	 **/
 	measure: function(note1, note2)
 	{
-		res = Zenino.Tools.Note.noteToInt(note2) - Zenino.Tools.Note.noteToInt(note1);
+		res = Zenino.Notes.noteToInt(note2) - Zenino.Notes.noteToInt(note1);
 		return (res < 0) ? 12 - (res * -1) : res;
 	},
 	
@@ -294,7 +318,7 @@ var Interval = {
 			number_of_fifth_steps = 7 - n1 + n2;		
 		}
 		// Count half steps between note1 and note2
-		var half_steps = Interval.measure(note1, note2);
+		var half_steps = Intervals.measure(note1, note2);
 		// Get the proper list from the number of fifth steps
 		var current = FIFTH_STEPS[number_of_fifth_steps];
 		// maj = number of major steps for this interval
@@ -321,16 +345,16 @@ var Interval = {
 	 **/
 	fromShortHand: function(note, interval, up)
 	{
-		if(typeof up === 'undefined') up = true;
+		if(up === undefined) up = true;
 		// warning should be a valid note.
-		if(!Zenino.Tools.Note.isValidNote(note)) return false;
+		if(!Zenino.Notes.isValidNote(note)) return false;
 		// Looking up last character in interval in SHORTHAND_LOOKUP
 		// and calling that function.
 		var val = false;
 		for(var i = 0, l = SHORTHAND_LOOKUP.length; i++;) {
 			var shorthand = SHORTHAND_LOOKUP[i];
 			if(shorthand[0] == interval.substr(-1)) {
-				val = up ? Interval[shorthand[1]](note) : Interval[shorthand[2]](note);
+				val = up ? Intervals[shorthand[1]](note) : Intervals[shorthand[2]](note);
 			}
 		}
 		// warning Last character in interval should be 1-7
@@ -340,11 +364,11 @@ var Interval = {
 		for(var i = 0, l = int_array.length; i < l; i++) {
 			var char = int_array[i];
 			if(char == '#') {
-				val = up ? Zenino.Tools.Note.augment(val)
-					: Zenino.Tools.Note.diminish(val);
+				val = up ? Zenino.Notes.augment(val)
+					: Zenino.Notes.diminish(val);
 			} else if(char == 'b') {
-				val = up ? Zenino.Tools.Note.diminish(val)
-					: Zenino.Tools.Note.augment(val);
+				val = up ? Zenino.Notes.diminish(val)
+					: Zenino.Notes.augment(val);
 			} else {
 				return val;
 			}
@@ -357,20 +381,19 @@ var Interval = {
 	 **/
 	augmentOrDiminishUntilTheIntervalIsRight: function(note1, note2, interval)
 	{
-		var cur = Interval.measure(note1, note2);
+		var cur = Intervals.measure(note1, note2);
 		while(cur !== interval) {
 			if(cur > interval)
-				note2 = Zenino.Tools.Note.diminish(note2);
+				note2 = Zenino.Notes.diminish(note2);
 			else if(cur < interval)
-				note2 = Zenino.Tools.Note.augment(note2);
-			cur = Interval.measure(note1, note2);
+				note2 = Zenino.Notes.augment(note2);
+			cur = Intervals.measure(note1, note2);
 		}
 		// We are practically done right now, but we need to be able to create
 		// the minor seventh of Cb and get Bbb instead of B######### as the result
-		var val = 0,
-				alts = Zenino.Tools.Note.getAccidentals(note2);
-		for(var i = 0, l = alts.length; i < l; i++) {
-			var alt = alts[i];
+		var val = 0;
+		for(var i = 1, l = note2.length; i < l; i++) {
+			var alt = note2[i];
 			if (alt == '#') val++;
 			else if (alt == 'b') val--;
 		}
@@ -387,11 +410,11 @@ var Interval = {
 		// Rebuild the note
 		var result = note2[0];
 		while(val > 0) {
-			result = Zenino.Tools.Note.augment(result);
+			result = Zenino.Notes.augment(result);
 			val--;
 		}
 		while(val < 0) {
-			result = Zenino.Tools.Note.diminish(result);
+			result = Zenino.Notes.diminish(result);
 			val++;
 		}
 		return result;
@@ -399,6 +422,6 @@ var Interval = {
 
 };
 
-Zenino.Tools.Interval = Interval;
+Zenino.Intervals = Intervals;
 
 })();

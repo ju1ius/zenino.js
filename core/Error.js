@@ -1,15 +1,25 @@
+FormatError = function(msg)
+{
+	this.name = "FormatError";
+	this.message = msg;
+}
+FormatError.prototype = new Error();
+FormatError.prototype.constructor = FormatError;
+
+
 NoteFormatError = function(note)
 {
   this.name = "NoteFormatError";
   this.message = '"'+ note + '"' + "is not a valid note";
 }
-NoteFormatError.prototype = new Error();
+NoteFormatError.prototype = new FormatError();
 NoteFormatError.prototype.constructor = NoteFormatError;
 
-KeyError = function(key)
+
+KeyFormatError = function(key)
 {
-  this.name = "KeyError";
+  this.name = "KeyFormatError";
   this.message = '"'+ key + '"' + "is not a valid key";
 }
-KeyError.prototype = new Error();
-KeyError.prototype.constructor = KeyError;
+KeyFormatError.prototype = new FormatError();
+KeyFormatError.prototype.constructor = KeyFormatError;

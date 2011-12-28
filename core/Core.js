@@ -1,28 +1,26 @@
 Zenino = {};
-Zenino.Tools = {};
 
 (function(){
 
-function Core()
-{
-  return {};
-}
-
-Core.NOTES = {
-  'C': 0, 
-  'D': 2,
-  'E': 4,
-  'F': 5, 
-  'G': 7,
-  'A': 9,
-  'B': 11
+Core = {
+  DIATONICS:    ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
+  FIFTHS:       ['F', 'C', 'G', 'D', 'A', 'E', 'B'],
+  SHARP_ORDER:  ['F#','C#','G#','D#','A#','E#','B#'],
+  FLAT_ORDER:   ['Bb','Eb','Ab','Db','Gb','Cb','Fb'],
+  NOTES: {
+    'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'A': 9, 'B': 11
+  },
+  CHROMATICS: [
+    'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
+  ],
+  CHROMATICS_SHARP: [
+    'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
+  ],
+  CHROMATICS_FLAT: [
+    'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'
+  ]
 };
-Core.CHROMATICS = [
-  'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
-];
-Core.FIFTHS = [
-  'F', 'C', 'G', 'D', 'A', 'E', 'B'
-];
+
 Core.MODES = {
   /*******************************************************************************************
   ======================================== MAJOR MODES =======================================
@@ -470,11 +468,7 @@ var modeNames = [];
 for (name in Core.MODES) {
   modeNames.push(name)
 }
-
-Core.getModeNames = function()
-{
-  return modeNames;
-}
+Core.MODE_NAMES = modeNames;
 
 Zenino.Core = Core;
 
