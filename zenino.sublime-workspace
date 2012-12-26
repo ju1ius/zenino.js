@@ -1,0 +1,235 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"dra",
+				"dragstart"
+			],
+			[
+				"mak",
+				"makeSnippetsList"
+			],
+			[
+				"att",
+				"attachEditors"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"add",
+				"addEvents	Moo.addEvents(events) Events"
+			],
+			[
+				"rep",
+				"repeatable-area"
+			],
+			[
+				"getT",
+				"getToolbarForButton"
+			],
+			[
+				"show",
+				"showToolbar"
+			],
+			[
+				"on",
+				"onMouseEnter"
+			],
+			[
+				"mouse",
+				"mouseenter"
+			],
+			[
+				"el",
+				"element"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"new",
+				"new Class	Moo.Class(props)"
+			],
+			[
+				"each",
+				"each	Moo.Array"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ti",
+				"TidyHTML"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			]
+		],
+		"width": 440.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/jules/code/zenino.js/zenino.js.sublime-project",
+		"/D/jules/code/zenino.js/zenino.sublime-workspace",
+		"/D/jules/code/js/editor/test.js",
+		"/D/jules/code/js/editor/test.html",
+		"/D/jules/code/zenino.js/specs/runner.html",
+		"/D/jules/code/zenino.js/lib/core/Core.js",
+		"/D/jules/code/zenino.js/specs/types/Math.js",
+		"/D/jules/code/zenino.js/lib/types/Array.js",
+		"/D/jules/code/zenino.js/lib/types/Object.js",
+		"/D/jules/code/zenino.js/lib/types/Math.js",
+		"/D/jules/code/zenino.js/lib/types/String.js",
+		"/D/jules/code/zenino.js/test.html",
+		"/D/jules/code/zenino.js/lib/core/Chords.js",
+		"/D/jules/code/zenino.js/lib/core/Keys.js",
+		"/D/jules/code/zenino.js/lib/core/Scales.js",
+		"/D/jules/code/zenino.js/lib/core/Intervals.js",
+		"/D/jules/code/zenino.js/lib/core/Notes.js",
+		"/D/jules/code/zenino.js/lib/core/Error.js",
+		"/D/jules/code/js/editor/RepeatableArea.js",
+		"/C/Documents and Settings/yves/Application Data/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Documents and Settings/yves/Application Data/Sublime Text 2/Packages/Mootools Snippets/README.md",
+		"/C/Documents and Settings/yves/Application Data/Sublime Text 2/Packages/AdvancedNewFile/README.md",
+		"/D/jules/code/js/ckeditor_4.0_1c8fd3e8f299/test.html",
+		"/C/Documents and Settings/yves/Application Data/Sublime Text 2/Packages/SublimeTidyHTML/TidyHTML.sublime-settings",
+		"/C/Documents and Settings/yves/Application Data/Sublime Text 2/Packages/Emmet/Emmet.sublime-settings"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"={2}"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"==="
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 199.0,
+	"status_bar_visible": true
+}
