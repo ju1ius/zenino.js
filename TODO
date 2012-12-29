@@ -1,0 +1,11 @@
+TESTS !!!
+
+implement the missing modes in Zenino.Scales:
+  for (var name in Zenino.Cores.MODES) {
+    if (Zenino.Scales[name] === undefined) goImplementIt();
+  }
+
+Zenino.Chords.getChordScales:
+  implement sorting by brilliance order
+  implement an algorhythm for non heptatonic modes:
+    diminished, augmented, pentatonics, bebop...

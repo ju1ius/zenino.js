@@ -3,6 +3,7 @@ describe("Zenino.Keys.getNotes", function()
   using('', [
     ['C', ['C','D','E','F','G','A','B']],
     ['F#', ['F#','G#','A#','B','C#','D#','E#']],
+    ['F', ['F','G','A','Bb','C','D','E']],
     ['a', ['A','B','C','D','E','F','G']],
     ['a', ['A','B','C','D','E','F','G']],
     ['G', ['G','A','B','C','D','E','F#']],
