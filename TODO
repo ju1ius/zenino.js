@@ -1,11 +1,25 @@
 TESTS !!!
 
+change mode uids to comma separated and use String.split(',') and Array.join(',')
+then move the splitUid function to Zenino.String.splitIntervalString or sthg like this.
+
+finish the alternative scales implementation
+
 implement the missing modes in Zenino.Scales:
   for (var name in Zenino.Cores.MODES) {
     if (Zenino.Scales[name] === undefined) goImplementIt();
   }
+  melodicMinorX5 modes:
+    find mode names for degrees 3, 5, 7
+    add them to Zenino.Core.MODES
+    aliases melodicMinorX5_2, _3, etc...
+  arabian modes:
+    degree 3
+  persian modes:
+    degrees 3, 5, 6, 7
 
 Zenino.Chords.getChordScales:
-  implement sorting by brilliance order
   implement an algorhythm for non heptatonic modes:
     diminished, augmented, pentatonics, bebop...
+
+genetic algorithm to generate scales ?
