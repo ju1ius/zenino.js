@@ -1,4 +1,5 @@
 TESTS !!!
+benchmarks with http://benchmarkjs.com/
 
 change mode uids to comma separated and use String.split(',') and Array.join(',')
 then move the splitUid function to Zenino.String.splitIntervalString or sthg like this.
@@ -22,4 +23,8 @@ Zenino.Chords.getChordScales:
   implement an algorhythm for non heptatonic modes:
     diminished, augmented, pentatonics, bebop...
 
-genetic algorithm to generate scales ?
+genetic algorithm to generate scales:
+  https://github.com/ntoll/foox
+  http://burakkanber.com/blog/machine-learning-genetic-algorithms-part-1-javascript/
+  http://burakkanber.com/blog/machine-learning-in-other-languages-introduction/
+  https://github.com/dwdyer/watchmaker
