@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="../libloader.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    loadZenino('../../lib');
+  </script>
+  <script src="heptatonic_generator.js" type="text/javascript"></script>
+</head>
+<body>
+  
+<pre id="output"></pre>
+
+<script type="text/javascript">
+var output = document.getElementById('output'),
+    scales, output_str = "", known = 0;
+
+function printScales(scales)
+{
+  scales.forEach(function(scale)
+  {
+    var uid = scale.join(''),
+        mode = Zenino.Core.MODES_BY_UID[uid];
+    output_str += scale.join(', ');
+    if (mode) {
+      output_str += " => "+mode.name;
+      known++;
+    }
+    output_str += "\n";
+  });
+  output.textContent = "Generated "+scales.length+" scales,\n" +
+    known + " of which were known\n" +
+    "=============================================\n" +
+    output_str;
+
+}
+function modeToHtml(infos)
+{
+  return infos.uid + ' (<b>'+infos.name+'</b>)' +
+    ", alts: " + infos.alteration_count +
+    ", half-steps: " + infos.num_semitones;
+}
+function printParents(scales)
+{
+  var total = 0;
+  scales.forEach(function(infos)
+  {
+    total++;
+    output_str +=  modeToHtml(infos) + "\n";
+    infos.children.forEach(function(child)
+    {
+      total++;
+      output_str += "\t" + modeToHtml(child) + "\n";
+    });
+  });
+  output.innerHTML =  "Generated "+scales.length+" parent modes, " +
+    total + " total\n" +
+    "=============================================\n" +
+    output_str;
+}
+
+console.time('generate scales');
+//scales = getValidScales();
+scales = getAllParents();
+console.timeEnd('generate scales');
+//printScales(scales);
+printParents(scales);
+</script>
+
+</body>
+</html>

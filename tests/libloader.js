@@ -1,12 +1,12 @@
-(function(){
+(function(global){
 
-function loadScript(path)
-{
-/*  var el = document.createElement('script');
-  el.setAttribute('src', path)
-  document.head.appendChild(el);*/
-  document.write('<script src="'+path+'" ></script>');
-}
+var loadScript = (global.postMessage && global.importScripts)
+  ? global.importScripts
+  : function(path)
+  {
+    document.write('<script src="'+path+'" ></script>');
+  };
+
 function loadPackage (pkg, path) {
   var scripts = pkg.scripts,
       subpackages = pkg.packages;
@@ -37,6 +37,6 @@ function loadLib(base_path)
   loadPackage(LIB, base_path);
 }
 
-window.loadZenino = loadLib;
+global.loadZenino = loadLib;
 
-}());
+}(this));
